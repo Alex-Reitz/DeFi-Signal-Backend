@@ -9,13 +9,12 @@ const PORT = +process.env.PORT || 3001;
 
 // Use dev database, testing database, or via env var, production database
 function getDatabaseUri() {
-  return (process.env.NODE_ENV === "test")
-      ? "defiSignal-test"
-      : process.env.DATABASE_URL || "defi-signal";
+  return process.env.NODE_ENV === "test"
+    ? "defi-signal-test"
+    : process.env.DATABASE_URL || "defi-signal";
 }
 
 // Speed up bcrypt during tests, since the algorithm safety isn't being tested
-
 const BCRYPT_WORK_FACTOR = process.env.NODE_ENV === "test" ? 1 : 12;
 
 console.log("Defi Signal Config:".green);

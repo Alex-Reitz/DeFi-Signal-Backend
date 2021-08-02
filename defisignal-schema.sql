@@ -17,8 +17,7 @@ CREATE TABLE favorites (
 
 CREATE TABLE notes (
   id SERIAL PRIMARY KEY,
-  input TEXT NOT NULL
+  note TEXT NOT NULL,
   username VARCHAR(25) NOT NULL
     REFERENCES users ON DELETE CASCADE
-  PRIMARY KEY (username, id)
 );
