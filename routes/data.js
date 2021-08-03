@@ -7,7 +7,6 @@ const Messari = require("../api-calls/Messari");
 router.get("/marketData", async function (req, res, next) {
   try {
     const marketData = await DefiPulse.getMarketData();
-    console.log(marketData);
     return res.json({ marketData });
   } catch (err) {
     return next(err);
@@ -17,7 +16,6 @@ router.get("/marketData", async function (req, res, next) {
 router.get("/lendingTokens", async function (req, res, next) {
   try {
     const lendingTokens = await DefiPulse.getLendingTokens();
-    console.log(lendingTokens);
     return res.json({ lendingTokens });
   } catch (err) {
     return next(err);
