@@ -11,7 +11,15 @@ class Messari {
         "x-messari-api-key": `${MESSARI_KEY}`,
       },
     });
-    console.log(result);
+    return result.data;
+  }
+  //Get news
+  static async getNews() {
+    const result = await axios.get(`${BASE_URL}v1/news`, {
+      headers: {
+        "x-messari-api-key": `${MESSARI_KEY}`,
+      },
+    });
     return result.data;
   }
 }
