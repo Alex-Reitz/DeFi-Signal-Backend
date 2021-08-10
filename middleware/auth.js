@@ -1,5 +1,7 @@
 "use strict";
 
+const jwt = require("jsonwebtoken");
+const { SECRET_KEY } = require("../config");
 const { UnauthorizedError } = require("../expressError");
 
 /** Middleware to use when they be logged in as an admin user.
