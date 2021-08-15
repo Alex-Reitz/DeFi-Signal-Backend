@@ -3,11 +3,12 @@ const router = express.Router();
 const DefiPulse = require("../api-calls/DefiPulse");
 const Messari = require("../api-calls/Messari");
 const DeFiLlama = require("../api-calls/DeFi-Llama");
+const coinGecko = require("../api-calls/coin-gecko");
 
 //Variety of endpoints to show users different sets of information, pulled from different api's
 
 //Get the market data from DeFiPulse API
-router.get("/marketData", async function (req, res, next) {
+router.get("/marketdata", async function (req, res, next) {
   try {
     const marketData = await DefiPulse.getMarketData();
     return res.json({ marketData });
@@ -47,6 +48,15 @@ router.get("/protocols", async function (req, res, next) {
   try {
     const protocols = await DeFiLlama.getProtocols();
     return res.json({ protocols });
+  } catch (err) {
+    return next(err);
+  }
+});
+//Get data on all protocols - DeFi Llama
+router.get("/globalDefiData", async function (req, res, next) {
+  try {
+    const data = await coinGecko.getGlobalDefiData();
+    return res.json({ data });
   } catch (err) {
     return next(err);
   }
