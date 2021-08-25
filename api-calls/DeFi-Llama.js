@@ -8,6 +8,12 @@ class DeFiLlama {
     const result = await axios.get(`${BASE_URL}/protocols`);
     return result.data;
   }
+
+  //Get's charts
+  static async getCharts() {
+    const result = await axios.get(`${BASE_URL}/charts`);
+    return result.data;
+  }
 }
 
 module.exports = DeFiLlama;

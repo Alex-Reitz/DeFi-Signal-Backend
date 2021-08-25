@@ -7,6 +7,16 @@ const coinGecko = require("../api-calls/coin-gecko");
 
 //Variety of endpoints to show users different sets of information, pulled from different api's
 
+//Get Gas Data
+router.get("/gasdata", async function (req, res, next) {
+  try {
+    const gas = await DefiPulse.getGasData();
+    return res.json({ gas });
+  } catch (err) {
+    return next(err);
+  }
+});
+
 //Get the market data from DeFiPulse API
 router.get("/marketdata", async function (req, res, next) {
   try {
@@ -52,11 +62,20 @@ router.get("/protocols", async function (req, res, next) {
     return next(err);
   }
 });
-//Get data on all protocols - DeFi Llama
+//Get data on all global DeFi Data - CoinGecko
 router.get("/globalDefiData", async function (req, res, next) {
   try {
     const data = await coinGecko.getGlobalDefiData();
     return res.json({ data });
+  } catch (err) {
+    return next(err);
+  }
+});
+//Get data on charts - DeFi Llama
+router.get("/charts", async function (req, res, next) {
+  try {
+    const charts = await DeFiLlama.getCharts();
+    return res.json({ charts });
   } catch (err) {
     return next(err);
   }
