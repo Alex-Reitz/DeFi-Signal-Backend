@@ -80,4 +80,40 @@ router.get("/charts", async function (req, res, next) {
     return next(err);
   }
 });
+//Get data on Eth chart - DeFi Llama
+router.get("/ethchart", async function (req, res, next) {
+  try {
+    const charts = await DeFiLlama.ethChart();
+    return res.json({ charts });
+  } catch (err) {
+    return next(err);
+  }
+});
+//Get data on binance chart - DeFi Llama
+router.get("/binancechart", async function (req, res, next) {
+  try {
+    const charts = await DeFiLlama.binanceChart();
+    return res.json({ charts });
+  } catch (err) {
+    return next(err);
+  }
+});
+//Get data on solana chart - DeFi Llama
+router.get("/solanachart", async function (req, res, next) {
+  try {
+    const charts = await DeFiLlama.solanaChart();
+    return res.json({ charts });
+  } catch (err) {
+    return next(err);
+  }
+});
+//Get data on polygon chart - DeFi Llama
+router.get("/polygonchart", async function (req, res, next) {
+  try {
+    const charts = await DeFiLlama.polygonChart();
+    return res.json({ charts });
+  } catch (err) {
+    return next(err);
+  }
+});
 module.exports = router;

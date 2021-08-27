@@ -6,7 +6,6 @@ class coinGecko {
   //Get Top 100 Cryptocurrency Global Eecentralized Finance(defi) data
   static async getGlobalDefiData() {
     const res = await CoinGeckoClient.global();
-    console.log(res);
     return res;
   }
 }
