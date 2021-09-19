@@ -22,6 +22,15 @@ class Messari {
     });
     return result.data;
   }
+  //Get Eth metrics
+  static async getEthMetrics() {
+    const result = await axios.get(`${BASE_URL}v1/assets/ethereum/metrics`, {
+      headers: {
+        "x-messari-api-key": `${MESSARI_KEY}`,
+      },
+    });
+    return result.data;
+  }
 }
 
 module.exports = Messari;

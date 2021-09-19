@@ -7,7 +7,7 @@ const coinGecko = require("../api-calls/coin-gecko");
 
 //Variety of endpoints to show users different sets of information, pulled from different api's
 
-//Get Gas Data
+//Get Gas Data from DeFiPulse
 router.get("/gasdata", async function (req, res, next) {
   try {
     const gas = await DefiPulse.getGasData();
@@ -17,7 +17,7 @@ router.get("/gasdata", async function (req, res, next) {
   }
 });
 
-//Get the market data from DeFiPulse API
+//Get the market data from DeFiPulse
 router.get("/marketdata", async function (req, res, next) {
   try {
     const marketData = await DefiPulse.getMarketData();
@@ -49,6 +49,15 @@ router.get("/news", async function (req, res, next) {
   try {
     const news = await Messari.getNews();
     return res.json({ news });
+  } catch (err) {
+    return next(err);
+  }
+});
+//Get ethereum metrics  - messari
+router.get("/ethmetrics", async function (req, res, next) {
+  try {
+    const metrics = await Messari.getEthMetrics();
+    return res.json({ metrics });
   } catch (err) {
     return next(err);
   }

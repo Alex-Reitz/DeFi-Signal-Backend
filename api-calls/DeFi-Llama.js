@@ -8,7 +8,6 @@ class DeFiLlama {
     const result = await axios.get(`${BASE_URL}/protocols`);
     return result.data;
   }
-
   //Get's TVL for all chains and returns charts data
   static async getCharts() {
     const result = await axios.get(`${BASE_URL}/charts`);
