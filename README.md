@@ -21,7 +21,7 @@
 
 Here's a brief high-level overview of the tech stack the app uses:
 
-- This project uses the React.js library along with chart.js and react-router on the front-end. The back-end uses Node and Express. The repo for the back-end can be found here [DeFi-Signal-Backend](https://github.com/Alex-Reitz/DeFi-Signal-Backend)
+- This project uses the React.js library along with chart.js and react-router on the front-end. The back-end uses Node and Express. The repo for the front-end can be found here [DeFi-Signal-Backend](https://github.com/Alex-Reitz/DeFi-Signal-Frontend)
 - For persistent storage (database), the app uses [PostgreSQL](https://www.postgresql.org/) which allows the app to create a custom storage schema and save it to a local database.
 <br />
 
