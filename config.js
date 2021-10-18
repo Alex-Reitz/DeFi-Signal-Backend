@@ -11,7 +11,7 @@ const PORT = +process.env.PORT || 3001;
 function getDatabaseUri() {
   return process.env.NODE_ENV === "test"
     ? "defisignaltest"
-    : process.env.DATABASE_URL || "defisignal";
+    : "postgresql-crystalline-50975";
 }
 
 // Speed up bcrypt during tests, since the algorithm safety isn't being tested
