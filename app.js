@@ -12,12 +12,11 @@ const morgan = require("morgan");
 
 const app = express();
 
-const corsConfig = {
-  credentials: true,
-  origin: true,
-};
-
-app.use(cors(corsConfig));
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", req.header("origin"));
+  next();
+});
+app.use(cors());
 app.use(express.json());
 app.use(morgan("tiny"));
 app.use(authenticateJWT);
