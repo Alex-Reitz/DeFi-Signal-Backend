@@ -18,6 +18,7 @@ app.use(function (req, res, next) {
 });
 
 app.use(cors());
+app.options("*", cors());
 app.use(express.json());
 app.use(morgan("tiny"));
 app.use(authenticateJWT);
