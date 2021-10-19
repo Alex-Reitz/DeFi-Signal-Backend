@@ -9,7 +9,7 @@ const PORT = +process.env.PORT;
 
 // Use dev database, testing database, or via env var, production database
 function getDatabaseUri() {
-  return "postgresql-crystalline-50975";
+  return process.env.DATABASE_URL;
 }
 
 // Speed up bcrypt during tests, since the algorithm safety isn't being tested
