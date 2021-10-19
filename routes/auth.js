@@ -39,18 +39,13 @@ router.post("/token", async function (req, res, next) {
 
 router.post("/register", async function (req, res, next) {
   try {
-    console.log(req.body);
     const validator = jsonschema.validate(req.body, userRegisterSchema);
     if (!validator.valid) {
-      console.log("Testing 2");
       const errs = validator.errors.map((e) => e.path[0] + " " + e.message);
-      console.log("Testing 3");
       throw new BadRequestError(errs);
     }
     const newUser = await User.register({ ...req.body, isAdmin: false });
-    console.log("Testing 4", newUser);
     const token = createToken(newUser);
-    console.log(token);
     return res.status(201).json({ token });
   } catch (err) {
     return next(err);
