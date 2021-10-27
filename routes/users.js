@@ -1,9 +1,11 @@
 "use strict";
 
 const express = require("express");
+const jsonschema = require("jsonschema");
 const { BadRequestError } = require("../expressError");
 const { ensureCorrectUserOrAdmin, ensureAdmin } = require("../middleware/auth");
 const User = require("../models/User");
+const userUpdateSchema = require("../schemas/userUpdate.json");
 
 const router = express.Router();
 
@@ -59,20 +61,19 @@ router.delete(
 //Returns
 
 router.patch(
-  ":/username",
+  "/:username",
   ensureCorrectUserOrAdmin,
   async function (req, res, next) {
-    console.log("User update route");
     try {
       const validator = jsonschema.validate(req.body, userUpdateSchema);
       if (!validator.valid) {
         const errs = validator.errors.map((e) => e.stack);
-        throw BadRequestError(errs);
+        throw new BadRequestError(errs);
       }
       const user = await User.update(req.params.username, req.body);
       return res.json({ user });
     } catch (error) {
-      return next(err);
+      return next(error);
     }
   }
 );
