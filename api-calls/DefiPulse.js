@@ -25,6 +25,13 @@ class DefiPulse {
     );
     return result.data;
   }
+  //returns data on all projects listed on DeFi Pulse's API
+  static async getProjects() {
+    const result = await axios.get(
+      `${BASE_URL}GetProjects?api-key=${DefiPulseKey}`
+    );
+    return result.data;
+  }
 }
 
 module.exports = DefiPulse;

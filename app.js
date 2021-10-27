@@ -2,6 +2,7 @@
 
 const express = require("express");
 const cors = require("cors");
+const compression = require("compression");
 
 const { NotFoundError } = require("./expressError");
 const { authenticateJWT } = require("./middleware/auth");
@@ -12,6 +13,7 @@ const morgan = require("morgan");
 
 const app = express();
 
+app.use(compression());
 app.use(cors());
 app.use(express.json());
 app.use(morgan("tiny"));

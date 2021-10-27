@@ -1,6 +1,7 @@
 "use strict";
 
 const express = require("express");
+const { BadRequestError } = require("../expressError");
 const { ensureCorrectUserOrAdmin, ensureAdmin } = require("../middleware/auth");
 const User = require("../models/User");
 
@@ -48,6 +49,29 @@ router.delete(
       await User.remove(req.params.username);
       return res.json({ deleted: req.params.username });
     } catch (err) {
+      return next(err);
+    }
+  }
+);
+
+//Patch a user's profile information
+//Data can include firstName, lastName, email
+//Returns
+
+router.patch(
+  ":/username",
+  ensureCorrectUserOrAdmin,
+  async function (req, res, next) {
+    console.log("User update route");
+    try {
+      const validator = jsonschema.validate(req.body, userUpdateSchema);
+      if (!validator.valid) {
+        const errs = validator.errors.map((e) => e.stack);
+        throw BadRequestError(errs);
+      }
+      const user = await User.update(req.params.username, req.body);
+      return res.json({ user });
+    } catch (error) {
       return next(err);
     }
   }

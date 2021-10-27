@@ -16,6 +16,7 @@ class DeFiLlama {
   //Get Eth TVL chart only
   static async ethChart() {
     const result = await axios.get(`${BASE_URL}/charts/ethereum`);
+    console.log(result);
     return result.data;
   }
   //Get binance TVL chart only

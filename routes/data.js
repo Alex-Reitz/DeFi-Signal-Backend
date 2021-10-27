@@ -17,6 +17,16 @@ router.get("/gasdata", async function (req, res, next) {
   }
 });
 
+//Get all projects from DeFiPulse
+router.get("/allprojects", async function (req, res, next) {
+  try {
+    const projects = await DefiPulse.getProjects();
+    return res.json({ projects });
+  } catch (err) {
+    return next(err);
+  }
+});
+
 //Get the market data from DeFiPulse
 router.get("/marketdata", async function (req, res, next) {
   try {
