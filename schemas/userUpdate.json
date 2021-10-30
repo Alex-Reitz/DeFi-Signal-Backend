@@ -26,5 +26,5 @@
     }
   },
   "additionalProperties": false,
-  "required": ["password"]
+  "required": []
 }
