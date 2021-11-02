@@ -36,7 +36,7 @@ router.get("/marketdata", async function (req, res, next) {
     return next(err);
   }
 });
-//Get a list of lending tokens when the endpoint /data/lendingTokens is hit - DefiPulse
+//Get a list of lending tokens - DefiPulse
 router.get("/lendingTokens", async function (req, res, next) {
   try {
     const lendingTokens = await DefiPulse.getLendingTokens();
@@ -45,7 +45,7 @@ router.get("/lendingTokens", async function (req, res, next) {
     return next(err);
   }
 });
-//Get a list of assets from messari when /data/assets is hit
+//Get a list of assets from messari
 router.get("/assets", async function (req, res, next) {
   try {
     const assets = await Messari.getAssets();
@@ -67,6 +67,33 @@ router.get("/news", async function (req, res, next) {
 router.get("/ethmetrics", async function (req, res, next) {
   try {
     const metrics = await Messari.getEthMetrics();
+    return res.json({ metrics });
+  } catch (err) {
+    return next(err);
+  }
+});
+//Get solana metrics  - messari
+router.get("/solanametrics", async function (req, res, next) {
+  try {
+    const metrics = await Messari.getSolMetrics();
+    return res.json({ metrics });
+  } catch (err) {
+    return next(err);
+  }
+});
+//Get polygon metrics  - messari
+router.get("/polygonmetrics", async function (req, res, next) {
+  try {
+    const metrics = await Messari.getPolygonMetrics();
+    return res.json({ metrics });
+  } catch (err) {
+    return next(err);
+  }
+});
+//Get bsc metrics  - messari
+router.get("/binancemetrics", async function (req, res, next) {
+  try {
+    const metrics = await Messari.getBinanceCoinMetrics();
     return res.json({ metrics });
   } catch (err) {
     return next(err);
