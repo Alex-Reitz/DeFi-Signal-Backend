@@ -91,7 +91,7 @@ router.get("/polygonmetrics", async function (req, res, next) {
   }
 });
 //Get bsc metrics  - messari
-router.get("/binancemetrics", async function (req, res, next) {
+router.get("/bnbmetrics", async function (req, res, next) {
   try {
     const metrics = await Messari.getBinanceCoinMetrics();
     return res.json({ metrics });
