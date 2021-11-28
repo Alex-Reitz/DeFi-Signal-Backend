@@ -108,11 +108,13 @@ router.get("/protocols", async function (req, res, next) {
     return next(err);
   }
 });
-//Get data on all global DeFi Data - CoinGecko
-router.get("/globalDefiData", async function (req, res, next) {
+//Get data on a single protocol - DeFi Llama
+router.get("/protocol/:slug", async function (req, res, next) {
+  console.log(req.params);
   try {
-    const data = await coinGecko.getGlobalDefiData();
-    return res.json({ data });
+    const slug = req.params.slug;
+    const protocol = await DeFiLlama.getProtocol(slug);
+    return res.json({ protocol });
   } catch (err) {
     return next(err);
   }
