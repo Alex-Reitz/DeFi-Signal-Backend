@@ -108,17 +108,6 @@ router.get("/protocols", async function (req, res, next) {
     return next(err);
   }
 });
-//Get data on a single protocol - DeFi Llama
-router.get("/protocol/:slug", async function (req, res, next) {
-  console.log(req.params);
-  try {
-    const slug = req.params.slug;
-    const protocol = await DeFiLlama.getProtocol(slug);
-    return res.json({ protocol });
-  } catch (err) {
-    return next(err);
-  }
-});
 //Get data on charts - DeFi Llama
 router.get("/charts", async function (req, res, next) {
   try {
@@ -160,6 +149,15 @@ router.get("/polygonchart", async function (req, res, next) {
   try {
     const charts = await DeFiLlama.polygonChart();
     return res.json({ charts });
+  } catch (err) {
+    return next(err);
+  }
+});
+//CoinGecko geckoID for Defi Protocol
+router.get("/:geckoID", async function (req, res, next) {
+  try {
+    const result = await coinGecko.getProjectData(req.params.geckoID);
+    return res.json({ result });
   } catch (err) {
     return next(err);
   }
