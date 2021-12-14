@@ -4,11 +4,12 @@ let DefiPulseKey = process.env.DEFI_PULSE_KEY;
 const BASE_URL = `https://data-api.defipulse.com/api/v1/defipulse/api/`;
 
 class DefiPulse {
-  //returns a list of lending tokens, uses 1 API credit
+  //returns Gas Data - but is very slow
   static async getGasData() {
     const result = await axios.get(
-      `https://data-api.defipulse.com/api/v1/egs/api/ethgasAPI.json?api-key=${DefiPulseKey}`
+      `https://ethgasstation.info/api/ethgasAPI.json?api-key=${DefiPulseKey}`
     );
+    console.log("Gas Data Hit", result);
     return result.data;
   }
   //returns a list of lending tokens, uses 1 API credit
