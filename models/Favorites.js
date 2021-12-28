@@ -17,12 +17,12 @@ class Favorite {
       [favorite]
     );
     if (duplicateCheck.rows[0]) {
-      //Delete from favorites table
+      //Delete from favorites tablec
+      console.log("Favorited already", favorite);
     }
     //If favorite is not there for this user, add to the table
     const result = await db.query(
       `INSERT INTO favorites
-              
                `,
       []
     );

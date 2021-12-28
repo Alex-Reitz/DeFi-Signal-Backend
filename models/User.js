@@ -59,7 +59,7 @@ class User {
   }) {
     const duplicateCheck = await db.query(
       `SELECT username
-           FROM users
+           FROM users 
            WHERE username = $1`,
       [username]
     );

@@ -5,6 +5,7 @@ const jsonschema = require("jsonschema");
 const { BadRequestError } = require("../expressError");
 const { ensureCorrectUserOrAdmin, ensureAdmin } = require("../middleware/auth");
 const User = require("../models/User");
+const Favorites = require("../models/Favorites");
 const userUpdateSchema = require("../schemas/userUpdate.json");
 
 const router = express.Router();
@@ -74,6 +75,21 @@ router.patch(
       return res.json({ user });
     } catch (error) {
       return next(error);
+    }
+  }
+);
+
+//Get a user's favorites
+router.post(
+  "/:username/favorites",
+  ensureCorrectUserOrAdmin,
+  async function (req, res, next) {
+    console.log(req.body, "user favorites endpoint");
+    try {
+      const selected = await Favorites.toggleFavorite();
+      return res.json({ selected });
+    } catch (err) {
+      return next(err);
     }
   }
 );
