@@ -12,5 +12,4 @@ CREATE TABLE favorites (
   id SERIAL PRIMARY KEY,
   asset TEXT NOT NULL,
   username VARCHAR(25) NOT NULL
-    REFERENCES users ON DELETE CASCADE
 );

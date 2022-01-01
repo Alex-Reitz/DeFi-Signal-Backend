@@ -80,13 +80,29 @@ router.patch(
 );
 
 //Get a user's favorites
-router.post(
+router.get(
   "/:username/favorites",
   ensureCorrectUserOrAdmin,
   async function (req, res, next) {
-    console.log(req.body, "user favorites endpoint");
     try {
-      const selected = await Favorites.toggleFavorite();
+      const selected = await Favorites.getFavorites(req.params.username);
+      return res.json({ selected });
+    } catch (err) {
+      return next(err);
+    }
+  }
+);
+
+//Update a user's favorites
+router.patch(
+  "/:username/favorites",
+  ensureCorrectUserOrAdmin,
+  async function (req, res, next) {
+    try {
+      const selected = await Favorites.toggleFavorite(
+        req.params.username,
+        req.body.slug
+      );
       return res.json({ selected });
     } catch (err) {
       return next(err);
