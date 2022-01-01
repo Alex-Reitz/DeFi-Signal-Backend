@@ -9,7 +9,6 @@ class DefiPulse {
     const result = await axios.get(
       `https://ethgasstation.info/api/ethgasAPI.json?api-key=${DefiPulseKey}`
     );
-    console.log("Gas Data Hit", result);
     return result.data;
   }
   //returns a list of lending tokens, uses 1 API credit
